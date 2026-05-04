@@ -1,0 +1,505 @@
+.new-arrival-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 40px 0 40px;
+}
+
+.new-arrival-container {
+    max-width: 1440px;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+
+.new-arrival-wrapper {
+    width: 100%;
+    min-height: 670px;
+    border-radius: 24px;
+    background-color: #eef4ff;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: contain;
+    padding: 78px 48px 54px;
+    overflow: hidden;
+    position: relative;
+}
+
+.new-arrival-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 82% 12%,
+            rgba(255, 255, 255, 0.78),
+            rgba(255, 255, 255, 0.18) 28%,
+            transparent 43%);
+    pointer-events: none;
+}
+
+.new-arrival-top {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 47px;
+}
+
+.new-arrival-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #ef654f;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.2px;
+}
+
+.new-arrival-top h2 {
+    margin: 0;
+    color: #07183f;
+    font-family: "Inter", sans-serif;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+}
+
+.new-arrival-explore-btn {
+    min-width: 164px;
+    height: 50px;
+    border: 1px solid #ef654f;
+    border-radius: 8px;
+    background: #ef654f;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 10px 20px rgba(239, 101, 79, 0.12);
+}
+
+.new-arrival-explore-btn:hover {
+    background: #ffffff;
+    border-color: #ef654f;
+    color: #ef654f;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 26px rgba(239, 101, 79, 0.18);
+}
+
+.new-arrival-slider {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 2px;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    will-change: scroll-position;
+    padding: 2px 2px 12px;
+}
+
+.new-arrival-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.new-arrival-card {
+    flex: 0 0 372px;
+    width: 372px;
+    min-height: 430px;
+    border: 0;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 16px 16px 20px;
+    cursor: pointer;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    transition: 0.28s ease;
+    box-shadow: 0 12px 34px rgba(7, 24, 63, 0.055);
+    position: relative;
+    overflow: hidden;
+}
+
+.new-arrival-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    border: 1px solid rgba(7, 24, 63, 0.04);
+    pointer-events: none;
+}
+
+.new-arrival-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 55px rgba(7, 24, 63, 0.12);
+}
+
+.new-arrival-ribbon {
+    position: absolute;
+    top: 28px;
+    left: 28px;
+    z-index: 4;
+    min-height: 26px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #000000, #4a4a4b);
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 10px 20px rgba(7, 24, 63, 0.18);
+}
+
+.new-arrival-ribbon.premium {
+    background: linear-gradient(135deg, #0e5efd, #799de6);
+        box-shadow: 0 12px 24px rgba(21, 91, 232, 0.22);
+}
+
+.new-arrival-ribbon.hot {
+    background: linear-gradient(135deg, #000000, #4a4a4b);
+    box-shadow: 0 12px 24px rgba(21, 91, 232, 0.22);
+}
+
+.new-arrival-ribbon.popular {
+    background: linear-gradient(135deg, #0e5efd, #799de6);
+    box-shadow: 0 12px 24px rgba(21, 91, 232, 0.22);
+}
+
+.new-arrival-img-box {
+    width: 100%;
+    height: 245px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f0f2f6;
+}
+
+.new-arrival-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.38s ease;
+}
+
+.new-arrival-card:hover .new-arrival-img-box img {
+    transform: scale(1.045);
+}
+
+.new-arrival-card-body {
+    padding-top: 17px;
+}
+
+.new-arrival-category {
+    display: inline-flex;
+    align-items: center;
+    min-height: 23px;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #eef4ff;
+    color: #155be8;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.new-arrival-card-body h3 {
+    margin: 0 0 7px;
+    color: #07183f;
+    font-family: "Inter", sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.new-arrival-card-body p {
+    margin: 0;
+    color: #777d88;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.new-arrival-card-body p span {
+    margin-left: 8px;
+    color: #ef654f;
+}
+
+.new-arrival-card-bottom {
+    margin-top: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.new-arrival-card-bottom strong {
+    color: #07183f;
+    font-family: "Inter", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.new-arrival-cart-btn {
+    min-width: 154px;
+    height: 44px;
+    border: 1px solid #ef654f;
+    border-radius: 8px;
+    background: #ef654f;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    transition: 0.25s ease;
+    box-shadow: 0 10px 20px rgba(239, 101, 79, 0.12);
+}
+
+.new-arrival-cart-btn:hover {
+    background: #ffffff;
+    color: #ef654f;
+    box-shadow: 0 12px 24px rgba(239, 101, 79, 0.16);
+}
+
+.new-arrival-cart-btn ion-icon {
+    font-size: 20px;
+}
+
+.new-arrival-dots {
+    position: relative;
+    z-index: 2;
+    margin-top: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.new-arrival-dots button {
+    width: 9px;
+    height: 9px;
+    border: 0;
+    border-radius: 999px;
+    background: #cbd7ec;
+    padding: 0;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+button.new-arrival-control-btn.prev {
+    position: relative;
+    left: -15px;
+}
+
+button.new-arrival-control-btn.next {
+    position: relative;
+    right: -15px;
+}
+
+.new-arrival-dots button.active {
+    width: 30px;
+    background: #ef654f;
+}
+
+.new-arrival-mobile-controls {
+    display: none;
+    position: relative;
+    z-index: 5;
+}
+
+.new-arrival-control-btn {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(217, 226, 242, 0.95);
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #07183f;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    font-size: 0;
+    transition: 0.25s ease;
+    box-shadow: 0 12px 28px rgba(7, 24, 63, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.new-arrival-control-btn ion-icon {
+    font-size: 22px;
+}
+
+.new-arrival-control-btn.next {
+    background: #ef654f;
+    border-color: #ef654f;
+    color: #ffffff;
+}
+
+.new-arrival-control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(7, 24, 63, 0.16);
+}
+
+.new-arrival-control-btn.next:hover {
+    background: #e95842;
+    border-color: #e95842;
+}
+
+@media (max-width: 1199px) {
+    .new-arrival-container {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .new-arrival-wrapper {
+        padding: 56px 36px 44px;
+    }
+
+    .new-arrival-card {
+        flex-basis: 354px;
+        width: 354px;
+    }
+
+    .new-arrival-img-box {
+        height: 230px;
+    }
+}
+
+@media (max-width: 991px) {
+    .new-arrival-wrapper {
+        min-height: auto;
+        padding: 48px 28px 40px;
+    }
+
+    .new-arrival-top {
+        flex-direction: column;
+        margin-bottom: 36px;
+    }
+
+    .new-arrival-top h2 {
+        font-size: 30px;
+    }
+
+    .new-arrival-explore-btn {
+        min-width: 160px;
+        height: 50px;
+    }
+
+    .new-arrival-card {
+        flex-basis: 340px;
+        width: 340px;
+    }
+}
+
+@media (max-width: 767px) {
+    .new-arrival-section {
+        padding: 30px 0 30px;
+    }
+
+    .new-arrival-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .new-arrival-wrapper {
+        border-radius: 18px;
+        padding: 40px 18px 34px;
+        background-size: 420px auto;
+    }
+
+    .new-arrival-top h2 {
+        font-size: 26px;
+    }
+
+    .new-arrival-explore-btn {
+        height: 52px;
+        font-size: 16px;
+    }
+
+    .new-arrival-card {
+        flex: 0 0 88%;
+        width: 88%;
+        min-height: auto;
+    }
+
+    .new-arrival-card-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .new-arrival-cart-btn {
+        width: 100%;
+    }
+
+    .new-arrival-dots {
+        display: none;
+    }
+
+    .new-arrival-mobile-controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        pointer-events: none;
+        margin-top: -270px;
+        margin-bottom: 226px;
+        padding: 0 4px;
+    }
+
+    .new-arrival-control-btn {
+        pointer-events: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .new-arrival-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .new-arrival-wrapper {
+        padding: 34px 14px 30px;
+    }
+
+    .new-arrival-top h2 {
+        font-size: 23px;
+    }
+
+    .new-arrival-card {
+        flex-basis: 100%;
+        width: 100%;
+        padding: 14px;
+    }
+
+    .new-arrival-img-box {
+        height: 210px;
+    }
+
+    .new-arrival-card-body h3 {
+        font-size: 18px;
+    }
+
+    .new-arrival-card-bottom strong {
+        font-size: 28px;
+    }
+
+    .new-arrival-mobile-controls {
+        margin-top: -250px;
+        margin-bottom: 206px;
+        padding: 0 2px;
+    }
+
+    .new-arrival-control-btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .new-arrival-control-btn ion-icon {
+        font-size: 18px;
+    }
+}

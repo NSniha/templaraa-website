@@ -1,0 +1,218 @@
+.join-opportunity-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 40px 0 80px;
+}
+
+.join-opportunity-container {
+    max-width: 1440px;
+    padding-left: 48px;
+    padding-right: 48px;
+}
+
+.join-opportunity-wrapper {
+    width: 100%;
+    min-height: 328px;
+    border-radius: 24px;
+    background-image: linear-gradient(179deg, rgb(16 83 224), rgb(15 74 198) 38%, rgb(0 29 224 / 57%) 62%, rgb(13 57 151) 100%), var(--join-bg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 74px 58px 60px;
+}
+
+.join-opportunity-wrapper::before {
+    display: none;
+}
+
+.join-opportunity-content {
+    width: 67%;
+    max-width: 880px;
+    position: relative;
+    z-index: 2;
+}
+
+.join-opportunity-content h2 {
+    margin: 0 0 15px;
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.16;
+    letter-spacing: -0.8px;
+}
+
+.join-opportunity-content p {
+    max-width: 850px;
+    margin: 0 0 38px;
+    color: rgba(255, 255, 255, 0.86);
+    font-family: "Inter", sans-serif;
+    font-size: 16.5px;
+    font-weight: 400;
+    line-height: 1.42;
+}
+
+.join-opportunity-btn {
+    width: 166px;
+    height: 57px;
+    border-radius: 7px;
+    background: #ef654f;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.25s ease;
+    box-shadow: 0 14px 24px rgba(16, 31, 68, 0.12);
+}
+
+.join-opportunity-btn:hover {
+    background: #e95842;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 30px rgba(16, 31, 68, 0.2);
+}
+
+.join-opportunity-visual {
+    position: absolute;
+    right: 72px;
+    bottom: 16px;
+    width: 330px;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.join-opportunity-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+@media (max-width: 1199px) {
+    .join-opportunity-container {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+
+    .join-opportunity-wrapper {
+        padding-left: 46px;
+        padding-right: 46px;
+    }
+
+    .join-opportunity-content {
+        width: 66%;
+    }
+
+    .join-opportunity-content h2 {
+        font-size: 31px;
+    }
+
+    .join-opportunity-visual {
+        right: 42px;
+        width: 300px;
+    }
+}
+
+@media (max-width: 991px) {
+    .join-opportunity-container {
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+
+    .join-opportunity-wrapper {
+        min-height: auto;
+        padding: 48px 38px 260px;
+        align-items: flex-start;
+    }
+
+    .join-opportunity-content {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .join-opportunity-content p {
+        max-width: 690px;
+    }
+
+    .join-opportunity-visual {
+        right: 38px;
+        bottom: 12px;
+        width: 290px;
+    }
+}
+
+@media (max-width: 767px) {
+    .join-opportunity-section {
+        padding: 30px 0 60px;
+    }
+
+    .join-opportunity-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .join-opportunity-wrapper {
+        border-radius: 20px;
+        padding: 38px 24px 240px;
+    }
+
+    .join-opportunity-content h2 {
+        font-size: 28px;
+    }
+
+    .join-opportunity-content p {
+        font-size: 15.5px;
+        margin-bottom: 28px;
+    }
+
+    .join-opportunity-btn {
+        width: 150px;
+        height: 52px;
+        font-size: 16px;
+    }
+
+    .join-opportunity-visual {
+        right: 20px;
+        width: 260px;
+    }
+}
+
+@media (max-width: 480px) {
+    .join-opportunity-container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .join-opportunity-wrapper {
+        padding: 32px 20px 220px;
+    }
+
+    .join-opportunity-content h2 {
+        font-size: 24px;
+        line-height: 1.22;
+    }
+
+    .join-opportunity-content p {
+        font-size: 14.5px;
+    }
+
+    .join-opportunity-btn {
+        width: 140px;
+        height: 50px;
+    }
+
+    .join-opportunity-visual {
+        right: 12px;
+        bottom: 10px;
+        width: 230px;
+    }
+}
