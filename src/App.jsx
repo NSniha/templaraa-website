@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
+import Product from "./pages/Product/Product";
 
 function App() {
   const navigate = useNavigate();
@@ -131,6 +134,18 @@ function App() {
         />
 
         <Route path="/about" element={<About />} />
+
+        <Route
+          path="/products"
+          element={
+            <Product
+              searchValue={searchValue}
+              onProductClick={handleProductClick}
+              onAddToCart={handleAddToCart}
+              onRatingFilter={handleRatingFilter}
+            />
+          }
+        />
       </Routes>
 
       <Footer

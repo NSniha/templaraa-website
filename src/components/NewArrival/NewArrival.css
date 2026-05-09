@@ -118,7 +118,7 @@
     scroll-snap-align: start;
     scroll-snap-stop: normal;
     transition: 0.28s ease;
-    box-shadow: 0 12px 34px rgba(7, 24, 63, 0.055);
+    box-shadow: 0 5px 5px 5px rgba(211, 211, 214, 0.096);
     position: relative;
     overflow: hidden;
 }

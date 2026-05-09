@@ -12,8 +12,9 @@ const categoryData = [
   {
     id: 1,
     title: "eCommerce Templates",
-    path: "/products?category=ecommerce",
+    path: "/products/modern-ecommerce-store",
     image: ecommerceImg,
+    buttonText: "View Details",
     tags: [
       { label: "Product Pages", count: 25 },
       { label: "Shop Layouts", count: 15 },
@@ -25,8 +26,9 @@ const categoryData = [
   {
     id: 2,
     title: "Business Websites",
-    path: "/products?category=business",
+    path: "/products/business-consulting-template",
     image: businessImg,
+    buttonText: "View Details",
     tags: [
       { label: "Corporate", count: 22 },
       { label: "Agency", count: 18 },
@@ -38,8 +40,9 @@ const categoryData = [
   {
     id: 3,
     title: "Portfolio Designs",
-    path: "/products?category=portfolio",
+    path: "/products/creative-portfolio-template",
     image: portfolioImg,
+    buttonText: "View Details",
     tags: [
       { label: "Personal", count: 20 },
       { label: "Creative", count: 16 },
@@ -51,8 +54,9 @@ const categoryData = [
   {
     id: 4,
     title: "Entertainment Pages",
-    path: "/products?category=entertainment",
+    path: "/products/movie-streaming-platform",
     image: entertainmentImg,
+    buttonText: "View Details",
     tags: [
       { label: "Events", count: 17 },
       { label: "Media", count: 15 },
@@ -64,8 +68,9 @@ const categoryData = [
   {
     id: 5,
     title: "Technology Layouts",
-    path: "/products?category=technology",
+    path: "/products/ai-technology-landing",
     image: technologyImg,
+    buttonText: "View Details",
     tags: [
       { label: "SaaS", count: 24 },
       { label: "AI Tools", count: 19 },
@@ -77,8 +82,9 @@ const categoryData = [
   {
     id: 6,
     title: "Studio Templates",
-    path: "/products?category=studio",
+    path: "/products/design-studio-website",
     image: studioImg,
+    buttonText: "View Details",
     tags: [
       { label: "Design Studio", count: 21 },
       { label: "Branding", count: 15 },
@@ -166,7 +172,7 @@ function Categories({ searchValue = "", onExploreCategory, onExploreMore }) {
                       }
                       onClick={() => handleExploreCategory(category)}
                     >
-                      Explore All
+                      {category.buttonText}
                     </button>
                   </div>
                 </div>
