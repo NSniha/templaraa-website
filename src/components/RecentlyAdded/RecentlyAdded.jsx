@@ -9,15 +9,15 @@ import shopifyLogo from "../../assets/icons/logo-shopify.png";
 import webflowLogo from "../../assets/icons/logo-webflow.png";
 import framerLogo from "../../assets/icons/logo-framer.png";
 
-import dashboardImg from "../../assets/images/recent-dashboard.png";
-import commerceImg from "../../assets/images/recent-commerce.png";
-import agencyImg from "../../assets/images/recent-agency.png";
-import portfolioImg from "../../assets/images/recent-portfolio.png";
-import saasImg from "../../assets/images/recent-saas.png";
-import studioImg from "../../assets/images/recent-studio.png";
-import figmaKitImg from "../../assets/images/recent-figma-kit.png";
-import shopifyImg from "../../assets/images/recent-shopify.png";
-import framerImg from "../../assets/images/recent-framer.png";
+import dashboardImg from "../../assets/images/products/recent-dashboard.png";
+import commerceImg from "../../assets/images/products/recent-commerce.png";
+import agencyImg from "../../assets/images/products/recent-agency.png";
+import portfolioImg from "../../assets/images/products/recent-portfolio.png";
+import saasImg from "../../assets/images/products/recent-saas.png";
+import studioImg from "../../assets/images/products/recent-studio.png";
+import figmaKitImg from "../../assets/images/products/recent-figma-kit.png";
+import shopifyImg from "../../assets/images/products/recent-shopify.png";
+import framerImg from "../../assets/images/products/recent-framer.png";
 
 const filterTabs = [
   {

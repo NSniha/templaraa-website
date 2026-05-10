@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import "./NewArrival.css";
 
 import arrivalBg from "../../assets/images/new-arrival-bg.png";
-import dashboardImg from "../../assets/images/new-dashboard.png";
-import ecommerceImg from "../../assets/images/new-ecommerce.png";
-import agencyImg from "../../assets/images/new-agency.png";
-import saasImg from "../../assets/images/new-saas.png";
-import portfolioImg from "../../assets/images/new-portfolio.png";
-import studioImg from "../../assets/images/new-studio.png";
-import corporateImg from "../../assets/images/new-corporate.png";
-import retailImg from "../../assets/images/new-retail.png";
-import financeImg from "../../assets/images/new-finance.png";
+import dashboardImg from "../../assets/images/products/new-dashboard.png";
+import ecommerceImg from "../../assets/images/products/new-ecommerce.png";
+import agencyImg from "../../assets/images/products/new-agency.png";
+import saasImg from "../../assets/images/products/new-saas.png";
+import portfolioImg from "../../assets/images/products/new-portfolio.png";
+import studioImg from "../../assets/images/products/new-studio.png";
+import corporateImg from "../../assets/images/products/new-corporate.png";
+import retailImg from "../../assets/images/products/new-retail.png";
+import financeImg from "../../assets/images/products/new-finance.png";
 
 const newArrivalProducts = [
   {

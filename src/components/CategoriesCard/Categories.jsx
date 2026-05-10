@@ -1,12 +1,12 @@
 import React from "react";
 import "./Categories.css";
 
-import ecommerceImg from "../../assets/images/category-ecommerce.png";
-import businessImg from "../../assets/images/category-business.png";
-import portfolioImg from "../../assets/images/category-portfolio.png";
-import entertainmentImg from "../../assets/images/category-entertainment.png";
-import technologyImg from "../../assets/images/category-technology.png";
-import studioImg from "../../assets/images/category-studio.png";
+import ecommerceImg from "../../assets/images/products/category-ecommerce.png";
+import businessImg from "../../assets/images/products/category-business.png";
+import portfolioImg from "../../assets/images/products/category-portfolio.png";
+import entertainmentImg from "../../assets/images/products/category-entertainment.png";
+import technologyImg from "../../assets/images/products/category-technology.png";
+import studioImg from "../../assets/images/products/category-studio.png";
 
 const categoryData = [
   {

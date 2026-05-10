@@ -22,6 +22,35 @@ const normalizeText = (value = "") => {
     .replace(/^-+|-+$/g, "");
 };
 
+const randomPillProducts = {
+  101: "Premium",
+  35: "Featured",
+  102: "New",
+  202: "Popular",
+  39: "Featured",
+  109: "Hot",
+  22: "New",
+  105: "Popular",
+  37: "Featured",
+  108: "Premium",
+  207: "Premium",
+  209: "New",
+  204: "Popular",
+  107: "New",
+};
+
+const newestPillProductOrder = [
+  101, 35, 102, 202, 39, 109, 22, 105, 37, 108, 207, 209, 204, 107,
+];
+
+const getProductPill = (product) => {
+  if (product.badge) {
+    return product.badge;
+  }
+
+  return randomPillProducts[product.id] || "";
+};
+
 const getCategoryFromHeader = (category = "") => {
   const normalized = normalizeText(category);
 
@@ -44,6 +73,16 @@ const getMixedAllProducts = () => {
   return allItemsMixOrder.map((id) => productMap.get(id)).filter(Boolean);
 };
 
+const getNewestPillProducts = () => {
+  const productMap = new Map(
+    productList.map((product) => [Number(product.id), product])
+  );
+
+  return newestPillProductOrder
+    .map((id) => productMap.get(Number(id)))
+    .filter(Boolean);
+};
+
 function Product({
   searchValue = "",
   onAddToCart,
@@ -57,7 +96,7 @@ function Product({
   const [localSearch, setLocalSearch] = useState("");
   const [activeGroup, setActiveGroup] = useState("All Items");
   const [openGroup, setOpenGroup] = useState("");
-  const [activeTech, setActiveTech] = useState("All");
+  const [activeSubCategory, setActiveSubCategory] = useState("All");
   const [minPrice, setMinPrice] = useState(20);
   const [maxPrice, setMaxPrice] = useState(120);
   const [rating, setRating] = useState(0);
@@ -66,10 +105,11 @@ function Product({
 
   useEffect(() => {
     const categoryFromUrl = searchParams.get("category");
+    const subCategoryFromUrl = searchParams.get("subCategory");
 
     if (!categoryFromUrl) {
       setActiveGroup("All Items");
-      setActiveTech("All");
+      setActiveSubCategory("All");
       setOpenGroup("");
       return;
     }
@@ -77,8 +117,9 @@ function Product({
     const matchedGroup = getCategoryFromHeader(categoryFromUrl);
 
     setActiveGroup(matchedGroup);
-    setActiveTech("All");
-    setOpenGroup(matchedGroup === "All Items" ? "" : matchedGroup);
+    setActiveSubCategory(subCategoryFromUrl || "All");
+
+    setOpenGroup("");
   }, [searchParams]);
 
   const getProductsByGroup = (group) => {
@@ -87,30 +128,38 @@ function Product({
     return productList.filter((product) => product.group === group);
   };
 
-  const getTechFiltersByGroup = (group) => {
+  const getSubCategoriesByGroup = (group) => {
     if (group === "All Items") return [];
 
     const sourceProducts = getProductsByGroup(group);
-    const allTech = sourceProducts.map((product) => product.tech);
+    const subCategories = sourceProducts
+      .map((product) => product.subCategory)
+      .filter(Boolean);
 
-    return ["All", ...new Set(allTech)];
+    return ["All", ...new Set(subCategories)];
   };
 
   const groupCount = (group) => {
     return getProductsByGroup(group).length;
   };
 
-  const techCount = (group, tech) => {
+  const subCategoryCount = (group, subCategory) => {
     const sourceProducts = getProductsByGroup(group);
 
-    if (tech === "All") {
+    if (subCategory === "All") {
       return sourceProducts.length;
     }
 
-    return sourceProducts.filter((product) => product.tech === tech).length;
+    return sourceProducts.filter(
+      (product) => product.subCategory === subCategory
+    ).length;
   };
 
   const filteredProducts = useMemo(() => {
+    if (sortBy === "newest") {
+      return getNewestPillProducts();
+    }
+
     const mergedSearch = `${searchValue} ${localSearch}`.trim().toLowerCase();
 
     let productsData =
@@ -122,9 +171,9 @@ function Product({
       );
     }
 
-    if (activeTech !== "All") {
+    if (activeSubCategory !== "All") {
       productsData = productsData.filter(
-        (product) => product.tech === activeTech
+        (product) => product.subCategory === activeSubCategory
       );
     }
 
@@ -146,15 +195,17 @@ function Product({
 
     if (mergedSearch) {
       productsData = productsData.filter((product) => {
-        const searchableText =
-          `${product.title} ${product.author} ${product.group} ${product.tech} ${product.subCategory}`.toLowerCase();
+        const searchableText = `
+          ${product.title}
+          ${product.author}
+          ${product.group}
+          ${product.subCategory}
+          ${product.source}
+          ${product.badge}
+        `.toLowerCase();
 
         return searchableText.includes(mergedSearch);
       });
-    }
-
-    if (sortBy === "newest") {
-      productsData = [...productsData].sort((a, b) => b.id - a.id);
     }
 
     if (sortBy === "price-low") {
@@ -172,7 +223,7 @@ function Product({
     return productsData;
   }, [
     activeGroup,
-    activeTech,
+    activeSubCategory,
     minPrice,
     maxPrice,
     rating,
@@ -183,7 +234,7 @@ function Product({
 
   const handleGroupClick = (group) => {
     setActiveGroup(group);
-    setActiveTech("All");
+    setActiveSubCategory("All");
 
     if (group === "All Items") {
       setSearchParams({});
@@ -200,21 +251,30 @@ function Product({
 
     setOpenGroup((currentGroup) => (currentGroup === group ? "" : group));
     setActiveGroup(group);
-    setActiveTech("All");
+    setActiveSubCategory("All");
     setSearchParams({ category: group });
   };
 
-  const handleTechClick = (event, group, tech) => {
+  const handleSubCategoryClick = (event, group, subCategory) => {
     event.stopPropagation();
 
     setActiveGroup(group);
-    setActiveTech(tech);
+    setActiveSubCategory(subCategory);
 
     if (group === "All Items") {
       setSearchParams({});
-    } else {
-      setSearchParams({ category: group });
+      return;
     }
+
+    if (subCategory === "All") {
+      setSearchParams({ category: group });
+      return;
+    }
+
+    setSearchParams({
+      category: group,
+      subCategory,
+    });
   };
 
   const handleRatingClick = (event, selectedRating) => {
@@ -242,7 +302,7 @@ function Product({
   const handleResetFilter = () => {
     setActiveGroup("All Items");
     setOpenGroup("");
-    setActiveTech("All");
+    setActiveSubCategory("All");
     setMinPrice(20);
     setMaxPrice(120);
     setRating(0);
@@ -254,6 +314,13 @@ function Product({
     if (onRatingFilter) {
       onRatingFilter(0);
     }
+  };
+
+  const handleBreadcrumbGroupClick = () => {
+    setActiveSubCategory("All");
+    setSearchParams({ category: activeGroup });
+
+    setOpenGroup("");
   };
 
   const handleApplyFilter = () => {
@@ -305,10 +372,10 @@ function Product({
 
   const productGridClass =
     viewMode === "grid"
-      ? activeTech !== "All"
+      ? activeSubCategory !== "All"
         ? "product-grid show-product-tags"
         : "product-grid"
-      : activeTech !== "All"
+      : activeSubCategory !== "All"
       ? "product-grid product-list-view show-product-tags"
       : "product-grid product-list-view";
 
@@ -317,10 +384,49 @@ function Product({
       <section className="product-listing-section">
         <div className="container-fluid product-listing-container">
           <div className="product-breadcrumb">
-            <button type="button" aria-label="Go home">
+            <button
+              type="button"
+              aria-label="Go to all products"
+              onClick={handleResetFilter}
+            >
               <ion-icon name="home-outline"></ion-icon>
             </button>
-            <span>/ Digital Products</span>
+
+            <button
+              type="button"
+              className="product-breadcrumb-link"
+              onClick={handleResetFilter}
+            >
+              Products
+            </button>
+
+            {activeGroup !== "All Items" && (
+              <>
+                <span>/</span>
+
+                <button
+                  type="button"
+                  className="product-breadcrumb-link active"
+                  onClick={handleBreadcrumbGroupClick}
+                >
+                  {activeGroup}
+                </button>
+              </>
+            )}
+
+            {activeSubCategory !== "All" && (
+              <>
+                <span>/</span>
+
+                <button
+                  type="button"
+                  className="product-breadcrumb-link active-sub"
+                  aria-label={activeSubCategory}
+                >
+                  {activeSubCategory}
+                </button>
+              </>
+            )}
           </div>
 
           <div className="product-listing-layout">
@@ -389,7 +495,7 @@ function Product({
                       const isActive = activeGroup === item;
                       const isOpen = openGroup === item;
                       const hasSubFilter = item !== "All Items";
-                      const techFilters = getTechFiltersByGroup(item);
+                      const subCategoryFilters = getSubCategoriesByGroup(item);
 
                       return (
                         <div
@@ -443,21 +549,27 @@ function Product({
 
                           {isOpen && hasSubFilter && (
                             <div className="product-inline-sub-filter">
-                              {techFilters.map((tech) => (
+                              {subCategoryFilters.map((subCategory) => (
                                 <button
                                   type="button"
                                   className={
-                                    activeTech === tech
+                                    activeSubCategory === subCategory
                                       ? "product-sub-filter active"
                                       : "product-sub-filter"
                                   }
-                                  key={tech}
+                                  key={subCategory}
                                   onClick={(event) =>
-                                    handleTechClick(event, item, tech)
+                                    handleSubCategoryClick(
+                                      event,
+                                      item,
+                                      subCategory
+                                    )
                                   }
                                 >
-                                  <span>{tech}</span>
-                                  <small>{techCount(item, tech)}</small>
+                                  <span>{subCategory}</span>
+                                  <small>
+                                    {subCategoryCount(item, subCategory)}
+                                  </small>
                                 </button>
                               ))}
                             </div>
@@ -641,14 +753,20 @@ function Product({
               <div className="product-applied-row">
                 <span>Filters applied :</span>
 
-                <button type="button">{activeGroup}</button>
+                {sortBy === "newest" ? (
+                  <button type="button">Newest</button>
+                ) : (
+                  <>
+                    <button type="button">{activeGroup}</button>
 
-                {activeTech !== "All" && (
-                  <button type="button">{activeTech}</button>
-                )}
+                    {activeSubCategory !== "All" && (
+                      <button type="button">{activeSubCategory}</button>
+                    )}
 
-                {Number(rating) > 0 && (
-                  <button type="button">{rating} stars & up</button>
+                    {Number(rating) > 0 && (
+                      <button type="button">{rating} stars & up</button>
+                    )}
+                  </>
                 )}
 
                 <small>{filteredProducts.length} products found</small>
@@ -656,44 +774,61 @@ function Product({
 
               {filteredProducts.length > 0 ? (
                 <div className={productGridClass}>
-                  {filteredProducts.map((product) => (
-                    <article
-                      className="product-card"
-                      key={product.id}
-                      onClick={() => handleProductClick(product)}
-                    >
-                      <div className="product-image-box">
-                        <img src={product.image} alt={product.title} />
-                      </div>
+                  {filteredProducts.map((product) => {
+                    const productPill = getProductPill(product);
+                    const shouldShowPill = Boolean(productPill);
 
-                      <div className="product-card-content">
-                        <div className="product-card-meta">
-                          <span>{product.group}</span>
-                          <span>{product.tech}</span>
+                    return (
+                      <article
+                        className="product-card"
+                        key={product.id}
+                        onClick={() => handleProductClick(product)}
+                      >
+                        <div className="product-image-box">
+                          {shouldShowPill && (
+                            <span
+                              className={`product-image-pill ${normalizeText(
+                                productPill
+                              )}`}
+                            >
+                              {productPill}
+                            </span>
+                          )}
+
+                          <img src={product.image} alt={product.title} />
                         </div>
 
-                        <h3>{product.title}</h3>
-                        <p>by {product.author}</p>
-
-                        <div className="product-card-bottom-row">
-                          <div className="product-card-stars">
-                            {renderStars(product.rating)}
+                        <div className="product-card-content">
+                          <div className="product-card-meta">
+                            <span>{product.group}</span>
+                            <span>{product.subCategory}</span>
                           </div>
 
-                          <strong>${product.price}</strong>
-                        </div>
+                          <h3>{product.title}</h3>
+                          <p>by {product.author}</p>
 
-                        <button
-                          type="button"
-                          className="product-add-cart-btn"
-                          onClick={(event) => handleAddToCart(event, product)}
-                        >
-                          <ion-icon name="cart-outline"></ion-icon>
-                          Add to Cart
-                        </button>
-                      </div>
-                    </article>
-                  ))}
+                          <div className="product-card-bottom-row">
+                            <div className="product-card-stars">
+                              {renderStars(product.rating)}
+                            </div>
+
+                            <strong>${product.price}</strong>
+                          </div>
+
+                          <button
+                            type="button"
+                            className="product-add-cart-btn"
+                            onClick={(event) =>
+                              handleAddToCart(event, product)
+                            }
+                          >
+                            <ion-icon name="cart-outline"></ion-icon>
+                            Add to Cart
+                          </button>
+                        </div>
+                      </article>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="product-empty-state">
